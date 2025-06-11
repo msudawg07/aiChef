@@ -24,6 +24,32 @@ header > img {
   margin: auto;
 }
 
+.mainForm {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  height: 30px;
+}
+
+.mainForm > input {
+  width: 40%;
+  border-radius: 5px;
+}
+
+.mainForm > button {
+  color: #FAFAF8;
+  border-radius: 5px;
+  width: 25%;
+  background-color: black;
+}
+
+.mainForm > button:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+
 
 
 
