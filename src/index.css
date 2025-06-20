@@ -20,7 +20,7 @@ header > img {
 }
 
 #root {
-  width: 55%;
+  width: 45%;
   margin: auto;
 }
 
@@ -29,8 +29,9 @@ main {
 }
 
 .mainForm {
+  padding: 0 70px 0 70px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
   height: 30px;
 }
@@ -52,6 +53,33 @@ main {
   cursor: pointer;
 }
 
+
+.ingredientInput:focus {
+  outline: 3px solid lightblue;
+}
+
+.sendIngMain {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 70px 20px 70px;
+  background-color: lightblue;
+  border-radius: 5px;
+}
+
+.getRecipe {
+  color: #FAFAF8;
+  border-radius: 5px;
+  background-color: black;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.getRecipe:hover {
+  background-color: gray;
+  cursor: pointer;
+}
 
 
 
