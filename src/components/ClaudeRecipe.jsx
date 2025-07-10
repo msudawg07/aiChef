@@ -1,15 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import getRecipeFromMistral from '../ai.js'
+import ReactMarkdown from 'react-markdown'
 
 export default function ClaudeRecipe(props) {
 
-  // console.log(import.meta.env.VITE_API)
-
-  // console.log(props.ingredients[0]['props']['children'])
-
-
-
   return (
-    <h1>Cook this here boi</h1>
+    <div><ReactMarkdown>{props.recipe}</ReactMarkdown></div>
   )
 }
 

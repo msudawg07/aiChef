@@ -5,7 +5,7 @@ export default function SendIngredients(props) {
         <h2>Ready for recipe?</h2>
         <p>Generate a recipe from your list of ingredients.</p>
       </div>
-      <button onClick={() => props.clicked(prev => !prev)} className='getRecipe'>Get a recipe</button>
+      <button onClick={() => props.fetchRecipe(props.ingredients)} className='getRecipe'>Get a recipe</button>
     </div>
   )
 }

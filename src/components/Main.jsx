@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import SendIngredients from "./SendIngredients"
 import ClaudeRecipe from "./ClaudeRecipe"
+import getRecipeFromMistral from '../ai.js'
 
 export default function Main() {
 
   const [listOfIngredients, setListOfIngredients] = useState([])
   const [clickGetRecipe, setClickGetRecipe] = useState(false)
+  const [recipe, setRecipe] = useState('')
 
   function submit(formData) {
     let ingredient = formData.get('ingredient')
@@ -13,7 +15,12 @@ export default function Main() {
       alert('Must enter ingredient')
       return
     }
-    setListOfIngredients(prev => [...prev, <li key={ingredient}>{ingredient}</li>])
+    setListOfIngredients(prev => [...prev, ingredient])
+  }
+
+  function fetchRecipe() {
+    getRecipeFromMistral(listOfIngredients)
+    .then(res => setRecipe(res))
   }
 
 
@@ -26,9 +33,9 @@ export default function Main() {
       </form>
 
       {listOfIngredients.length != 0 && <h2>List of ingredients</h2>}
-      {listOfIngredients.length>0 && <ul>{listOfIngredients}</ul>}
-      {listOfIngredients.length>3 && <SendIngredients ingredients={listOfIngredients} clicked={setClickGetRecipe}/>}
-      {clickGetRecipe && <ClaudeRecipe ingredients={listOfIngredients}/>}
+      {listOfIngredients.length>0 && <ul>{listOfIngredients.map(i => <li key={i}>{i}</li>)}</ul>}
+      {listOfIngredients.length>3 && <SendIngredients ingredients={listOfIngredients} fetchRecipe={fetchRecipe}/>}
+      {recipe != '' && <ClaudeRecipe recipe={recipe} />}
     </main>
   )
 }
