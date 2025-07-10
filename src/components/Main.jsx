@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import SendIngredients from "./SendIngredients"
+import ClaudeRecipe from "./ClaudeRecipe"
 
 export default function Main() {
 
   const [listOfIngredients, setListOfIngredients] = useState([])
+  const [clickGetRecipe, setClickGetRecipe] = useState(false)
 
   function submit(formData) {
     let ingredient = formData.get('ingredient')
@@ -25,8 +27,8 @@ export default function Main() {
 
       {listOfIngredients.length != 0 && <h2>List of ingredients</h2>}
       {listOfIngredients.length>0 && <ul>{listOfIngredients}</ul>}
-      {listOfIngredients.length>3 && <SendIngredients ingredients={listOfIngredients}/>}
-
+      {listOfIngredients.length>3 && <SendIngredients ingredients={listOfIngredients} clicked={setClickGetRecipe}/>}
+      {clickGetRecipe && <ClaudeRecipe ingredients={listOfIngredients}/>}
     </main>
   )
 }
