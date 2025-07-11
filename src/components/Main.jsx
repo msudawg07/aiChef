@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import SendIngredients from "./SendIngredients"
 import ClaudeRecipe from "./ClaudeRecipe"
 import getRecipeFromMistral from '../ai.js'
@@ -8,6 +8,7 @@ export default function Main() {
   const [listOfIngredients, setListOfIngredients] = useState([])
   const [clickGetRecipe, setClickGetRecipe] = useState(false)
   const [recipe, setRecipe] = useState('')
+  const recipeSection = useRef(null)
 
   function submit(formData) {
     let ingredient = formData.get('ingredient')
@@ -23,6 +24,12 @@ export default function Main() {
     .then(res => setRecipe(res))
   }
 
+  useEffect(() => {
+    if(recipe && recipeSection.current != null) {
+        recipeSection.current.scrollIntoView({behavior: 'smooth'})
+    }
+  },[recipe])
+
 
   return (
     <main>
@@ -35,7 +42,7 @@ export default function Main() {
       {listOfIngredients.length != 0 && <h2>List of ingredients</h2>}
       {listOfIngredients.length>0 && <ul>{listOfIngredients.map(i => <li key={i}>{i}</li>)}</ul>}
       {listOfIngredients.length>3 && <SendIngredients ingredients={listOfIngredients} fetchRecipe={fetchRecipe}/>}
-      {recipe != '' && <ClaudeRecipe recipe={recipe} />}
+      {recipe != '' && <ClaudeRecipe recipe={recipe} ref={recipeSection}/>}
     </main>
   )
 }

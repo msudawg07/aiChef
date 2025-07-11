@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown'
 export default function ClaudeRecipe(props) {
 
   return (
-    <div><ReactMarkdown>{props.recipe}</ReactMarkdown></div>
+    <div ref={props.ref}><ReactMarkdown>{props.recipe}</ReactMarkdown></div>
   )
 }
 
