@@ -43,6 +43,7 @@ export default function Main() {
       {listOfIngredients.length>0 && <ul>{listOfIngredients.map(i => <li key={i}>{i}</li>)}</ul>}
       {listOfIngredients.length>3 && <SendIngredients ingredients={listOfIngredients} fetchRecipe={fetchRecipe}/>}
       {recipe != '' && <ClaudeRecipe recipe={recipe} ref={recipeSection}/>}
+      {/* {recipe == '' ? <h1>Loading...</h1> : <ClaudeRecipe recipe={recipe} ref={recipeSection}/>} */}
     </main>
   )
 }
